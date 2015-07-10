@@ -1,0 +1,16 @@
+<nav-menu></nav-menu>
+<div class="container" ng-controller="RecipeCtrl as recipe">
+  <div class="row">
+    <div class="col-md-6">
+      <figures>
+        <img class="img-responsive img-thumbnail" ng-src="/api/img/m/{{ recipe.data.img }}">
+        <i class="pull-right">{{ recipe.data.date | date }}</i>
+      </figures>
+    </div>
+    <div class="col-md-6">
+      <h1>{{ recipe.data.name }}</h1>
+      <p>{{ recipe.data.body }}</p>
+    </div>
+  </div>
+</div>
+

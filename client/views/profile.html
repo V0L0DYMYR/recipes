@@ -1,0 +1,90 @@
+<nav-menu></nav-menu>
+
+<div class="container-fluid" ng-controller="ProfileCtrl as profile">
+  <div class="col-md-2">
+    <h2>Profile</h2>
+    <ul class="list-unstyled">
+
+      <li><a class="active" href="#" ng-click="profile.setTab(1)">Каталог</a></li>
+      <li><a href="#" ng-click="profile.setTab(2)">Додати Рецепт</a></li>
+      <li><a href="#" ng-click="profile.setTab(3)">Аккаунт</a></li>
+    </ul>
+  </div>
+
+  <div class="col-md-10">
+    <div ng-show="profile.tab == 1">
+      <div class="row input-group">
+        <span class="input-group-addon">@</span>
+        <input type="text" class="form-control col-md-10">
+      </div>
+
+      <div class="row">
+
+
+        <table class="table table-hover table-condensed">
+          <thead>
+          <tr>
+            <td>Name</td>
+            <td>Description</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="recipe in profile.recipes">
+            <td><a href="#">{{ recipe.name }}</a></td>
+            <td>{{ recipe.body }}</td>
+            <td><a class="btn btn-danger btn-sm pull-right"
+                   ng-click="profile.removeRecipe(recipe.id)" href="#">Remove</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div class="row" ng-show="profile.tab == 2">
+      <form name="recipeForm"
+            action="/api/recipe"
+            method="post"
+            enctype="multipart/form-data">
+            <!--ng-submit="profile.addRecipe(profile.newRecipe)"/>-->
+
+        <fieldset>
+          <legend>Заповніть наступні поля</legend>
+
+          <div class="form-group">
+            <label class="control-label" for="textinput">Назва страви</label>
+
+            <div class="">
+              <input id="name" name="name"
+                     ng-model="profile.newRecipe.name"
+                     class="form-control input-md"
+                     type="text" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="textarea">Текст рецепта</label>
+
+            <div class="">
+              <textarea class="form-control" id="body"
+                        name="body"
+                        ng-model="profile.newRecipe.body" required></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="photoInputFile">Фото</label>
+            <input type="file" id="photo" name="photo" ng-file-select="onFileSelect($files)">
+
+            <p class="help-block">Виберіть фото для рецепту з вашої колекції.</p>
+          </div>
+
+          <button type="submit" class="btn btn-default">Зберегти</button>
+        </fieldset>
+      </form>
+    </div>
+
+    <div class="row" ng-show="profile.tab == 3">
+
+    </div>
+  </div>
+</div>

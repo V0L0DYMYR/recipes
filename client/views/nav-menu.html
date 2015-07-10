@@ -1,0 +1,25 @@
+<div class="navbar navbar-inverse navbar-static-top" ng-controller="UserCtrl as user">
+  <div class="container">
+    <a href="/" class="navbar-brand">Кулінарна Книга</a>
+    <ul class="nav navbar-nav navbar-right">
+      <li ng-show="user.info.name">
+        <a href="/profile">Профіль</a>
+      </li>
+      <li ng-show="user.info.name">
+
+          <a href="#" data-toggle="dropdown">
+            <img style="margin: -15px 5px " class="img-circle"
+                 src="https://graph.facebook.com/{{user.info.oauthId}}/picture">
+            {{ user.info.name }}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/logout" target="_blank">Вийти</a></li>
+          </ul>
+
+      </li>
+      <li>
+        <a ng-hide="user.info.name" href="/auth/facebook" target="_blank">Увійти</a>
+      </li>
+    </ul>
+  </div>
+</div>
